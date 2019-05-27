@@ -1,0 +1,26 @@
+---
+user:
+  {{ confluence_user }}:
+    exists: yes
+    groups:
+      - {{ confluence_group }}
+
+service:
+  confluence:
+    enabled: yes
+    running: yes
+
+port:
+  tcp:{{ confluence_server_port }}:
+    listening: yes
+{% if confluence_proxy_enabled %}
+  tcp:{{ confluence_connector_port }}:
+    listening: yes
+{% endif %}
+
+file:
+  {{ confluence_home_path }}/{{ confluence_pkg }}:
+    owner: {{ confluence_user }}
+    group: {{ confluence_group }}
+    exists: yes
+    filetype: directory

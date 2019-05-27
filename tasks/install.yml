@@ -1,0 +1,44 @@
+---
+- name: Confluence | Provisioning group
+  group:
+    name: "{{ confluence_group }}"
+    state: present
+
+- name: Confluence | Provisioning user
+  user:
+    name: "{{ confluence_user }}"
+    group: "{{ confluence_group }}"
+    shell: /bin/bash
+    state: present
+
+- name: Confluence | Downloading package
+  get_url:
+    url: "{{ confluence_pkg_download_url }}"
+    dest: /tmp/confluence
+    owner: "{{ confluence_user }}"
+    group: "{{ confluence_group }}"
+    force: no
+  register: downloaded_pkg
+
+- name: Confluence | Unarchiving package
+  unarchive:
+    src: "{{ downloaded_pkg.dest }}"
+    dest: "{{ confluence_home_path }}"
+    owner: "{{ confluence_user }}"
+    group: "{{ confluence_group }}"
+    remote_src: yes
+  when:
+    downloaded_pkg.status_code is defined and downloaded_pkg.status_code == 200
+
+- name: Confluence | Checking confluence home path
+  file:
+    path: "{{ confluence_home_path }}"
+    state: directory
+    owner: "{{ confluence_user }}"
+    group: "{{ confluence_group }}"
+
+- name: Confluence | Setting systemd service
+  template:
+    src: templates/confluence.service.j2
+    dest: /etc/systemd/system/confluence.service
+    mode: '0644'

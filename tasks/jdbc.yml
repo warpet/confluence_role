@@ -1,0 +1,56 @@
+---
+- name: Confluence | Downloading JDBC driver from url
+  get_url:
+    url: "{{ confluence_jdbc_download_url }}"
+    dest:
+      "{{ confluence_home_path }}/{{ confluence_pkg }}/confluence/WEB-INF/lib/"
+    owner: "{{ confluence_user }}"
+    group: "{{ confluence_group }}"
+  when: confluence_jdbc_origin == 'url'
+
+- name: Confluence | Installing jdbc driver from maven
+  block:
+    - name: Confluence | Creating virtualenv directory
+      file:
+        state: directory
+        path: "{{ confluence_tmp_dir }}"
+
+    - name: Confluence | Copying python requirements file
+      copy:
+        dest: "{{ confluence_tmp_dir }}/requirements-pip.txt"
+        src: requirements-pip.txt
+        mode: '0644'
+
+    - name: Confluence | Installing system dependencies
+      become: yes
+      apt:
+        name: "{{ confluence_system_dependencies }}"
+
+    - name: Confluence | Installing python dependencies
+      pip:
+        requirements: "{{ confluence_tmp_dir }}/requirements-pip.txt"
+        state: present
+        virtualenv: "{{ confluence_tmp_dir }}"
+
+    - name: Confluence | Getting JDBC driver
+      maven_artifact:
+        artifact_id: "{{ confluence_jdbc_maven['artifact_id'] }}"
+        group_id: "{{ confluence_jdbc_maven['group_id'] }}"
+        version: "{{ confluence_jdbc_maven['version'] }}"
+        dest:
+          "{{ confluence_home_path }}/{{ confluence_pkg }}/confluence/\
+          WEB-INF/lib/{{ confluence_jdbc_maven['artifact_id'] }}.jar"
+        repository_url: "{{ confluence_jdbc_maven['repo_url'] }}"
+      vars:
+        ansible_python_interpreter: "{{ confluence_tmp_dir }}/bin/python"
+      notify: Confluence | Service restart
+
+    - name: Confluence | Setting OJDBC driver permissions
+      file:
+        path:
+          "{{ confluence_home_path }}/{{ confluence_pkg }}/confluence/\
+          WEB-INF/lib/{{ confluence_jdbc_maven['artifact_id'] }}.jar"
+        owner: "{{ confluence_user }}"
+        group: "{{ confluence_group }}"
+        state: file
+  when: confluence_jdbc_origin == 'maven'

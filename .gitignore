@@ -1,0 +1,6 @@
+venv/
+roles/
+__pycache__/
+*.retry
+.idea/
+

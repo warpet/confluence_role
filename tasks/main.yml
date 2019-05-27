@@ -1,0 +1,21 @@
+---
+- name: Confluence | Install
+  import_tasks: install.yml
+  tags:
+    - confluence_install
+
+- name: Confluence | Config
+  import_tasks: config.yml
+  tags:
+    - confluence_config
+
+- name: Confluence | Service
+  import_tasks: service.yml
+  tags:
+    - confluence_service
+
+- name: Confluence | JDBC
+  import_tasks: jdbc.yml
+  tags:
+    - confluence_jdbc
+  when: confluence_jdbc_install | bool

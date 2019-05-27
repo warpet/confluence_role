@@ -1,0 +1,5 @@
+---
+confluence_pkg: "atlassian-confluence-{{ confluence_pkg_version }}"
+confluence_pkg_download_url: >
+  https://product-downloads.atlassian.com/software/confluence/downloads/
+  {{ confluence_pkg }}.tar.gz

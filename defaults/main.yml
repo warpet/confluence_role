@@ -1,0 +1,31 @@
+---
+confluence_tmp_dir: /tmp/confluence-venv
+
+confluence_pkg_version: 6.15.4
+
+confluence_user: confluence
+confluence_group: confluence
+
+confluence_home_path: /opt
+confluence_server_port: 8090
+confluence_connector_port: 8091
+confluence_context: ''
+
+confluence_proxy_enabled: no
+confluence_proxy:
+  public_port: ''
+  public_domain: ''
+
+confluence_jdbc_install: no
+confluence_jdbc_origin: ''
+
+confluence_jdbc_download_url: ''
+confluence_jdbc_maven:
+  artifact_id: ''
+  group_id: ''
+  version: ''
+  repo_url: ''
+
+confluence_system_dependencies:
+  - virtualenv
+  - python-setuptools

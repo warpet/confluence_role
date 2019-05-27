@@ -1,0 +1,6 @@
+---
+- name: Confluence | Enabling systemd service
+  service:
+    name: confluence
+    state: started
+    enabled: yes
