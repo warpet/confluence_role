@@ -62,6 +62,7 @@ Variables explanation:
 - `confluence_user` this is the owner for all generated files
 - `confluence_group` this is the group for all generated files
 - `confluence_home_path` this is the path where confluence will be installed
+- `confluence_data_path` this is the path where confluence store data files
 - `confluence_server_port` this is the port where confluence is listening on
 - `confluence_connector_port` this is used by confluence as connector port
 - `confluence_context` use this variable to define a url context, for example, 'http://example:8090/confluence' if not, leave it empty
