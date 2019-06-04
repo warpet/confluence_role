@@ -24,3 +24,8 @@ file:
     group: {{ confluence_group }}
     exists: yes
     filetype: directory
+  {{ confluence_data_path }}:
+    owner: {{ confluence_user }}
+    group: {{ confluence_group }}
+    exists: yes
+    filetype: directory

@@ -11,6 +11,16 @@
     shell: /bin/bash
     state: present
 
+- name: Confluence | Checking confluence paths
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ confluence_user }}"
+    group: "{{ confluence_group }}"
+  with_items:
+    - "{{ confluence_home_path }}"
+    - "{{ confluence_data_path }}"
+
 - name: Confluence | Downloading package
   get_url:
     url: "{{ confluence_pkg_download_url }}"
@@ -30,12 +40,16 @@
   when:
     downloaded_pkg.status_code is defined and downloaded_pkg.status_code == 200
 
-- name: Confluence | Checking confluence home path
+- name: Confluence | Checking confluence paths permissions
   file:
-    path: "{{ confluence_home_path }}"
+    path: "{{ item }}"
     state: directory
     owner: "{{ confluence_user }}"
     group: "{{ confluence_group }}"
+    recurse: yes
+  with_items:
+    - "{{ confluence_home_path }}"
+    - "{{ confluence_data_path }}"
 
 - name: Confluence | Setting systemd service
   template:
