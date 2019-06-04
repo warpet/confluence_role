@@ -6,7 +6,8 @@ confluence_pkg_version: 6.15.4
 confluence_user: confluence
 confluence_group: confluence
 
-confluence_home_path: /opt
+confluence_home_path: /opt/atlassian/confluence
+confluence_data_path: /var/atlassian/confluence/data
 confluence_server_port: 8090
 confluence_connector_port: 8091
 confluence_context: ''
