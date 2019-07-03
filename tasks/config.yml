@@ -28,11 +28,11 @@
   notify: Confluence | Service restart
 
 - name: Confluence | Setting logs location
-  replace:
-    path:
+  template:
+    src: templates/logging.properties.j2
+    dest:
       "{{ confluence_home_path }}/{{ confluence_pkg }}/conf/logging.properties"
-    regexp: '(.*)\$\{catalina\.base\}\/logs'
-    replace: "\\1{{ confluence_logs_path }}"
+    mode: '0644'
     owner: "{{ confluence_user }}"
     group: "{{ confluence_group }}"
   notify: Confluence | Service restart
