@@ -29,3 +29,13 @@ file:
     group: {{ confluence_group }}
     exists: yes
     filetype: directory
+  {{ confluence_logs_path }}:
+    owner: {{ confluence_user }}
+    group: {{ confluence_group }}
+    exists: yes
+    filetype: directory
+
+command:
+  confluence_logs:
+    exit-status: 0
+    exec: "find {{ confluence_logs_path }} -name \"*.log\" | egrep '.*'"

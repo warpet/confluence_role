@@ -8,9 +8,12 @@ confluence_group: confluence
 
 confluence_home_path: /opt/atlassian/confluence
 confluence_data_path: /var/atlassian/confluence/data
+confluence_logs_path: /var/log/confluence
 confluence_server_port: 8090
 confluence_connector_port: 8091
 confluence_context: ''
+
+confluence_garbage_collector_log_enabled: false
 
 confluence_proxy_enabled: no
 confluence_proxy:
@@ -30,3 +33,7 @@ confluence_jdbc_maven:
 confluence_system_dependencies:
   - virtualenv
   - python-setuptools
+
+confluence_java_opts:
+  xms: 1024
+  xmx: 1024
