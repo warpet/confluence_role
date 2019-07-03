@@ -70,9 +70,7 @@ Variables explanation:
 - `confluence_proxy_enabled` use this variable if you want use confluence behind a proxy server
 - `confluence_jdbc_install` enables external jdbc driver installation
 - `confluence_system_dependencies` packages required to install a virtualenv
-- `confluence_garbage_collector_log_enabled` use this variable to enable/disable garbage collector logs
-- `confluence_java_opts.xms` set java xms option
-- `confluence_java_opts.xmx` set java xmx option
+- `confluence_catalina_opts` use this variable to override catalina parameters
 
 Optional variables:
 

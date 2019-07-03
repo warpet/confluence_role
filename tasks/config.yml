@@ -18,29 +18,13 @@
     mode: '0644'
   notify: Confluence | Service restart
 
-- name: Confluence | Setting Catalina memory
-  lineinfile:
-    path:
-      "{{ confluence_home_path }}/{{ confluence_pkg }}/bin/setenv.sh"
-    regexp: '^CATALINA_OPTS\=\"-Xms\d*m'
-    line:
-      "CATALINA_OPTS=\"-Xms{{ confluence_java_opts['xms'] }}m \
-      -Xmx{{ confluence_java_opts['xmx'] }}m -XX:+UseG1GC ${CATALINA_OPTS}\""
+- name: Confluence | Setting Catalina config
+  template:
+    src: templates/setenv.sh.j2
+    dest: "{{ confluence_home_path }}/{{ confluence_pkg }}/bin/setenv.sh"
     owner: "{{ confluence_user }}"
     group: "{{ confluence_group }}"
-  notify: Confluence | Service restart
-
-- name: Confluence | Setting garbage collector log
-  lineinfile:
-    path:
-      "{{ confluence_home_path }}/{{ confluence_pkg }}/bin/setenv.sh"
-    regexp: '(CATALINA_OPTS\=\"-Xloggc.*)'
-    line:
-      "{{ confluence_garbage_collector_log_enabled | \
-      ternary('\\1', '# \\1') }}"
-    backrefs: yes
-    owner: "{{ confluence_user }}"
-    group: "{{ confluence_group }}"
+    mode: '0644'
   notify: Confluence | Service restart
 
 - name: Confluence | Setting logs location
