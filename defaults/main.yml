@@ -46,4 +46,5 @@ confluence_catalina_opts:
   - "-Dconfluence.context.path=${CONFLUENCE_CONTEXT_PATH}"
   - "-XX:ReservedCodeCacheSize=256m -XX:+UseCodeCacheFlushing"
 
+confluence_logrotate_enabled: true
 confluence_logrotate_config_file: templates/confluence.j2

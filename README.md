@@ -71,6 +71,8 @@ Variables explanation:
 - `confluence_jdbc_install` enables external jdbc driver installation
 - `confluence_system_dependencies` packages required to install a virtualenv
 - `confluence_catalina_opts` use this variable to override catalina parameters
+- `confluence_logrotate_enabled` activate logrotate config
+- `confluence_logrotate_config_file` logrotate config location
 
 Optional variables:
 

@@ -44,3 +44,4 @@
     mode: 0644
     owner: root
     group: root
+  when: confluence_logrotate_enabled | bool
