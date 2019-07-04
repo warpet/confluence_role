@@ -8,6 +8,7 @@ confluence_group: confluence
 
 confluence_home_path: /opt/atlassian/confluence
 confluence_data_path: /var/atlassian/confluence/data
+confluence_logs_path: /var/log/confluence
 confluence_server_port: 8090
 confluence_connector_port: 8091
 confluence_context: ''
@@ -30,3 +31,25 @@ confluence_jdbc_maven:
 confluence_system_dependencies:
   - virtualenv
   - python-setuptools
+
+confluence_java_opts:
+  xms: 1024m
+  xmx: 1024m
+
+confluence_catalina_opts:
+  - "-Xloggc:$LOGBASEABS/logs/gc-`date +%F_%H-%M-%S`.log"
+  - "-XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=2M"
+  - "-XX:-PrintGCDetails -XX:+PrintGCDateStamps -XX:-PrintTenuringDistribution"
+  - "-XX:G1ReservePercent=20"
+  - "-Djava.awt.headless=true"
+  - "-Datlassian.plugins.enable.wait=300"
+  - "-Xms{{ confluence_java_opts.xms }}"
+  - "-Xmx{{ confluence_java_opts.xmx }} -XX:+UseG1GC"
+  - "-Dsynchrony.enable.xhr.fallback=true"
+  - "-Dorg.apache.tomcat.websocket.DEFAULT_BUFFER_SIZE=32768"
+  - "${START_CONFLUENCE_JAVA_OPTS}"
+  - "-Dconfluence.context.path=${CONFLUENCE_CONTEXT_PATH}"
+  - "-XX:ReservedCodeCacheSize=256m -XX:+UseCodeCacheFlushing"
+
+confluence_logrotate_enabled: true
+confluence_logrotate_config_file: templates/confluence.j2

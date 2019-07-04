@@ -63,12 +63,18 @@ Variables explanation:
 - `confluence_group` this is the group for all generated files
 - `confluence_home_path` this is the path where confluence will be installed
 - `confluence_data_path` this is the path where confluence store data files
+- `confluence_logs_path` this is the path where confluence logs will be stored
 - `confluence_server_port` this is the port where confluence is listening on
 - `confluence_connector_port` this is used by confluence as connector port
 - `confluence_context` use this variable to define a url context, for example, 'http://example:8090/confluence' if not, leave it empty
 - `confluence_proxy_enabled` use this variable if you want use confluence behind a proxy server
 - `confluence_jdbc_install` enables external jdbc driver installation
 - `confluence_system_dependencies` packages required to install a virtualenv
+- `confluence_java_opts.xms` java xms value
+- `confluence_java_opts.xmx` java xmx value
+- `confluence_catalina_opts` use this variable to override catalina parameters
+- `confluence_logrotate_enabled` activate logrotate config
+- `confluence_logrotate_config_file` logrotate config location
 
 Optional variables:
 
