@@ -36,3 +36,11 @@
     owner: "{{ confluence_user }}"
     group: "{{ confluence_group }}"
   notify: Confluence | Service restart
+
+- name: Confluence | Copying logrotate config
+  template:
+    src: "{{ confluence_logrotate_config_file }}"
+    dest: /etc/logrotate.d/confluence
+    mode: 0644
+    owner: root
+    group: root

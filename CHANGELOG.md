@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 - *Update goss version* @miguel-chacon
 - *Change logs path* @miguel-chacon
 - *Catalina parameters* @miguel-chacon
+- *Logrotate config* @miguel-chacon
 
 ## [1.1.0](https://github.com/idealista/confluence_role/tree/1.1.0)
 [Full Changelog](https://github.com/idealista/confluence_role/compare/1.1.0...1.0.0)
