@@ -61,7 +61,8 @@ echo "--------------------------------------------------------------------------
 
 # Set the JVM arguments used to start Confluence. For a description of the options, see
 # http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html
-CATALINA_OPTS="{{ confluence_catalina_opts }} ${CATALINA_OPTS}"
-
+{% for opt in confluence_catalina_opts %}
+CATALINA_OPTS="{{ opt }} ${CATALINA_OPTS}"
+{% endfor %}
 
 export CATALINA_OPTS
