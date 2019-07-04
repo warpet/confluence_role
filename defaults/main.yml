@@ -32,6 +32,10 @@ confluence_system_dependencies:
   - virtualenv
   - python-setuptools
 
+confluence_java_opts:
+  xms: 1024m
+  xmx: 1024m
+
 confluence_catalina_opts:
   - "-Xloggc:$LOGBASEABS/logs/gc-`date +%F_%H-%M-%S`.log"
   - "-XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=2M"
@@ -39,7 +43,8 @@ confluence_catalina_opts:
   - "-XX:G1ReservePercent=20"
   - "-Djava.awt.headless=true"
   - "-Datlassian.plugins.enable.wait=300"
-  - "-Xms1024m -Xmx1024m -XX:+UseG1GC"
+  - "-Xms{{ confluence_java_opts.xms }}"
+  - "-Xmx{{ confluence_java_opts.xmx }} -XX:+UseG1GC"
   - "-Dsynchrony.enable.xhr.fallback=true"
   - "-Dorg.apache.tomcat.websocket.DEFAULT_BUFFER_SIZE=32768"
   - "${START_CONFLUENCE_JAVA_OPTS}"
