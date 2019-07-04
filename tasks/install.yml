@@ -20,6 +20,7 @@
   with_items:
     - "{{ confluence_home_path }}"
     - "{{ confluence_data_path }}"
+    - "{{ confluence_logs_path }}"
 
 - name: Confluence | Downloading package
   get_url:
@@ -50,6 +51,7 @@
   with_items:
     - "{{ confluence_home_path }}"
     - "{{ confluence_data_path }}"
+    - "{{ confluence_logs_path }}"
 
 - name: Confluence | Setting systemd service
   template:
