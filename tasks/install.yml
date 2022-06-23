@@ -55,6 +55,6 @@
 
 - name: Confluence | Setting systemd service
   template:
-    src: templates/confluence.service.j2
+    src: "{{ confluence_service_file }}"
     dest: /etc/systemd/system/confluence.service
     mode: '0644'
