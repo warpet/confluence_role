@@ -6,9 +6,14 @@ os: linux
 services:
   - docker
 install:
-  - pip install -r requirements-test.txt
+  - pip install pipenv
+  - pipenv sync
+env:
+  jobs:
+    - MOLECULE_DISTRO=debian:stretch-slim JDK_VENDOR=openjdk
+    - MOLECULE_DISTRO=debian:buster-slim JDK_VENDOR=adoptopenjdk
 script:
-  - molecule test
+  - pipenv run molecule test --all
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
   email:
