@@ -1,0 +1,6 @@
+---
+
+- name: Prepare
+  hosts: confluence_group
+  roles:
+    - java

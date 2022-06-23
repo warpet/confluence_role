@@ -5,30 +5,31 @@ dependency:
 driver:
   name: docker
 
-lint:
-  name: yamllint
+lint: |
+  yamllint .
+  ansible-lint .
 
 platforms:
   - name: confluence
-    hostname: confluence
-    image: idealista/jdk:8u265-stretch-openjdk-headless
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
     privileged: true
+    published_ports:
+      - "80:80"
     capabilities:
       - SYS_ADMIN
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
     groups:
-      - confluence
+      - confluence_group
     command: '/lib/systemd/systemd'
+    tmpfs:
+      - /tmp
+      - /run
+      - /run/lock
+    stop_signal: 'RTMIN+3'
 
 provisioner:
   name: ansible
-  log: yes
-  lint:
-    name: ansible-lint
 
 verifier:
-  name: goss
-  enabled: yes
-  lint:
-    name: yamllint
+  name: ansible
