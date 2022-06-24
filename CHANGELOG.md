@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/confluence_role/tree/develop)
+
+## [2.2.0](https://github.com/idealista/confluence_role/tree/2.2.0)(2022/06/24)
+[Full Changelog](https://github.com/idealista/confluence_role/compare/2.2.0...2.1.0)
 ### Changed
 - *[#9](https://github.com/idealista/confluence_role/issues/9) Templates path as variables* @xtianae7
 
