@@ -1,6 +1,6 @@
 ---
-
 - name: Prepare
   hosts: confluence_group
   roles:
-    - java
+    - role: java
+      tags: java
