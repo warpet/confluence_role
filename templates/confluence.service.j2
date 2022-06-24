@@ -4,6 +4,7 @@ After=syslog.target network.target
 
 [Service]
 Type=forking
+PrivateTmp={{ confluence_private_tmp }}
 User={{ confluence_user }}
 ExecStart={{ confluence_home_path }}/{{ confluence_pkg }}/bin/start-confluence.sh
 ExecStop={{ confluence_home_path }}/{{ confluence_pkg }}/bin/stop-confluence.sh

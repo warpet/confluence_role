@@ -22,9 +22,14 @@ This role installs a standalone Confluence server
 
 Install Confluence in a Debian system. Optionally, it can install external jdbc driver and prepare confluence to run behind a proxy server
 
-### Prerequesites
+### Prerequisities
 
-This is an Ansible role so you need Ansible to run it and Molecule + Docker for testing.
+Ansible 2.9.9 version installed.
+
+Molecule 3.x.x version installed.
+
+For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Docker](https://www.docker.com/) as driver and [Goss](https://github.com/aelsabbahy/goss) as verifier.
+
 Also, it requires Java installed, you can use [Ansible Galaxy - Idealista.Java_role](https://galaxy.ansible.com/idealista/java_role)
 
 
@@ -91,13 +96,21 @@ Optional variables:
 - `confluence_proxy.public_port` sets the public port
 - `confluence_proxy.public_domain` sets the public domain
 
-## Testing
+# Testing
 
-Run `pip install requirements-test.yml` before running tests
+### Install dependencies
 
-Launch tests:
+```sh
+$ pipenv sync
+```
 
-`molecule test`
+For more information read the [pipenv docs](ipenv-fork.readthedocs.io/en/latest/).
+
+### Testing
+
+```sh
+$ pipenv run molecule test 
+```
 
 ## Built With
 
