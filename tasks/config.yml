@@ -11,7 +11,7 @@
 
 - name: Confluence | Setting confluence config
   template:
-    src: templates/server.xml.j2
+    src: "{{ confluence_server_config_file }}"
     dest: "{{ confluence_home_path }}/{{ confluence_pkg }}/conf/server.xml"
     owner: "{{ confluence_user }}"
     group: "{{ confluence_group }}"
@@ -20,7 +20,7 @@
 
 - name: Confluence | Setting Catalina config
   template:
-    src: templates/setenv.sh.j2
+    src: "{{ confluence_catalina_config_file }}"
     dest: "{{ confluence_home_path }}/{{ confluence_pkg }}/bin/setenv.sh"
     owner: "{{ confluence_user }}"
     group: "{{ confluence_group }}"
@@ -29,7 +29,7 @@
 
 - name: Confluence | Setting logs location
   template:
-    src: templates/logging.properties.j2
+    src: "{{ confluence_logging_properties_file }}"
     dest:
       "{{ confluence_home_path }}/{{ confluence_pkg }}/conf/logging.properties"
     mode: '0644'

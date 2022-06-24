@@ -1,13 +1,23 @@
 ---
+dist: xenial
 language: python
-python: "3.6"
-
+python: "3.9"
+os: linux
 services:
   - docker
 install:
-  - pip install -r requirements-test.txt
+  - pip install pipenv
+  - pipenv sync
+env:
+  jobs:
+    - MOLECULE_DISTRO=debian:stretch-slim JDK_VENDOR=openjdk
 script:
-  - molecule test
-
+  - pipenv run molecule test --all
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  email:
+    if: branch = master
+    on_success: change
+    on_failure: always
+    recipients:
+      - desarrollo.benders@idealista.com

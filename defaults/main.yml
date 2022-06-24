@@ -53,3 +53,9 @@ confluence_catalina_opts:
 
 confluence_logrotate_enabled: true
 confluence_logrotate_config_file: templates/confluence.j2
+confluence_server_config_file: templates/server.xml.j2
+confluence_catalina_config_file: templates/setenv.sh.j2
+confluence_logging_properties_file: templates/logging.properties.j2
+confluence_service_file: templates/confluence.service.j2
+
+confluence_private_tmp: true
