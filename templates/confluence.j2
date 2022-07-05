@@ -1,6 +1,6 @@
 {{ confluence_logs_path }}/*.log {
-  daily
-  rotate 7
+  {{ confluence_logrotate.interval | default('daily') }}
+  rotate {{ confluence_logrotate.retention | default('30') }}
   copytruncate
   delaycompress
   notifempty

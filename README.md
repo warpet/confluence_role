@@ -96,6 +96,11 @@ Optional variables:
 - `confluence_proxy.public_port` sets the public port
 - `confluence_proxy.public_domain` sets the public domain
 
+    Use this variables to config logrotation
+- `confluence_logrotate.retention` sets the days after which old logfiles should be deleted
+- `confluence_logrotate.interval` sets the interval when rotation should be happen (daily, weekly, monthly, yearly)
+
+
 # Testing
 
 ### Install dependencies
