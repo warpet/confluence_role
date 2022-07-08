@@ -84,6 +84,20 @@
                     <!-- Logging configuration for Confluence is specified in confluence/WEB-INF/classes/log4j.properties -->
                     <Manager pathname=""/>
                     <Valve className="org.apache.catalina.valves.StuckThreadDetectionValve" threshold="60"/>
+
+                    <!-- http://tomcat.apache.org/tomcat-9.0-doc/config/valve.html#Access_Log_Valve -->
+                    <Valve className="org.apache.catalina.valves.AccessLogValve"
+                           directory="logs"
+                           maxDays="30"
+                           pattern="%t %{X-AUSERNAME}o %I %h %r %s %Dms %b %{Referer}i %{User-Agent}i"
+                           prefix="conf_access_log"
+                           requestAttributesEnabled="true"
+                           rotatable="true"
+                           suffix=".log"
+                    />
+
+                    <!-- http://tomcat.apache.org/tomcat-9.0-doc/config/valve.html#Remote_IP_Valve -->
+                    <Valve className="org.apache.catalina.valves.RemoteIpValve" />
                 </Context>
 
                 <Context path="${confluence.context.path}/synchrony-proxy" docBase="../synchrony-proxy" debug="0"
