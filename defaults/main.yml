@@ -18,6 +18,13 @@ confluence_proxy:
   public_port: ''
   public_domain: ''
 
+confluence_database_configuration:
+  driver: "org.postgresql.Driver"
+  dialect: "com.atlassian.confluence.impl.hibernate.dialect.PostgreSQLDialect"
+  url: "jdbc:postgresql://localhost:5432/confluence"
+  user: "confluence"
+  password: ""
+
 confluence_jdbc_install: no
 confluence_jdbc_origin: ''
 

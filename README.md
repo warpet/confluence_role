@@ -96,6 +96,17 @@ Optional variables:
 - `confluence_proxy.public_port` sets the public port
 - `confluence_proxy.public_domain` sets the public domain
 
+    Use this variables to config the database connection of confluence
+- `confluence_database_configuration.driver` sets the driver, i.e:
+   'org.postgresql.Driver'
+- `confluence_database_configuration.dialect` sets the dialect to be used, i.e:
+   'com.atlassian.confluence.impl.hibernate.dialect.PostgreSQLDialect'
+- `confluence_database_configuration.url` sets the url to connect to db, i.e:
+   'jdbc:postgresql://localhost:5432/confluence'
+- `confluence_database_configuration.user` sets the user to connect to db, i.e:
+   'confluence'
+- `confluence_database_configuration.password` sets the password to connect to db
+
 # Testing
 
 ### Install dependencies

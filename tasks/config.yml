@@ -27,6 +27,62 @@
     mode: '0644'
   notify: Confluence | Service restart
 
+- name: Confluence | Setting database link type
+  ansible.builtin.lineinfile:
+    path: "{{ confluence_data_path }}/confluence.cfg.xml"
+    owner: "{{ confluence_user }}"
+    group: "{{ confluence_group }}"
+    mode: "0640"
+    regexp: "hibernate.connection.driver_class"
+    line: '<property name="hibernate.connection.driver_class">{{ confluence_database_configuration.driver }}</property>'
+    insertbefore: "</properties>"
+  notify: Confluence | Service restart
+
+- name: Confluence | Setting database link dialect
+  ansible.builtin.lineinfile:
+    path: "{{ confluence_data_path }}/confluence.cfg.xml"
+    owner: "{{ confluence_user }}"
+    group: "{{ confluence_group }}"
+    mode: "0640"
+    regexp: "hibernate.dialect"
+    line: '<property name="hibernate.dialect">{{ confluence_database_configuration.dialect }}</property>'
+    insertbefore: "</properties>"
+  notify: Confluence | Service restart
+
+- name: Confluence | Setting database url
+  ansible.builtin.lineinfile:
+    path: "{{ confluence_data_path }}/confluence.cfg.xml"
+    owner: "{{ confluence_user }}"
+    group: "{{ confluence_group }}"
+    mode: "0640"
+    regexp: "hibernate.connection.url"
+    line: '<property name="hibernate.connection.url">{{ confluence_database_configuration.url }}</property>'
+    insertbefore: "</properties>"
+  notify: Confluence | Service restart
+
+- name: Confluence | Setting database user
+  ansible.builtin.lineinfile:
+    path: "{{ confluence_data_path }}/confluence.cfg.xml"
+    owner: "{{ confluence_user }}"
+    group: "{{ confluence_group }}"
+    mode: "0640"
+    regexp: "hibernate.connection.username"
+    line: '<property name="hibernate.connection.username">{{ confluence_database_configuration.user }}</property>'
+    insertbefore: "</properties>"
+  notify: Confluence | Service restart
+
+- name: Confluence | Setting database password
+  ansible.builtin.lineinfile:
+    path: "{{ confluence_data_path }}/confluence.cfg.xml"
+    owner: "{{ confluence_user }}"
+    group: "{{ confluence_group }}"
+    mode: "0640"
+    regexp: "hibernate.connection.password"
+    line: '<property name="hibernate.connection.password">{{ confluence_database_configuration.password }}</property>'
+    insertbefore: "</properties>"
+  no_log: true
+  notify: Confluence | Service restart
+
 - name: Confluence | Setting logs location
   template:
     src: "{{ confluence_logging_properties_file }}"
