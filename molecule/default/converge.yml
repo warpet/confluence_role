@@ -3,3 +3,10 @@
   hosts: confluence_group
   roles:
     - role: confluence_role
+      vars:
+        confluence_proxy_enabled: yes
+        confluence_proxy:
+          public_domain: 'localhost'
+          public_port: 443
+          secure: true
+          additionalParameters: 'relaxedPathChars="[]|" relaxedQueryChars="[]|{}^&#x5c;&#x60;&quot;&lt;&gt;"'

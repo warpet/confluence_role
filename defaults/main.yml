@@ -17,6 +17,8 @@ confluence_proxy_enabled: no
 confluence_proxy:
   public_port: ''
   public_domain: ''
+  secure: false
+  additionalParameters: 'relaxedPathChars="[]|" relaxedQueryChars="[]|{}^&#x5c;&#x60;&quot;&lt;&gt;"'
 
 confluence_jdbc_install: no
 confluence_jdbc_origin: ''
@@ -50,6 +52,7 @@ confluence_catalina_opts:
   - "${START_CONFLUENCE_JAVA_OPTS}"
   - "-Dconfluence.context.path=${CONFLUENCE_CONTEXT_PATH}"
   - "-XX:ReservedCodeCacheSize=256m -XX:+UseCodeCacheFlushing"
+  - "-XX:+IgnoreUnrecognizedVMOptions"
 
 confluence_logrotate_enabled: true
 confluence_logrotate:
