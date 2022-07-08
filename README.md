@@ -95,6 +95,7 @@ Optional variables:
     Use this variables to config confluence behind a proxy server
 - `confluence_proxy.public_port` sets the public port
 - `confluence_proxy.public_domain` sets the public domain
+- `confluence_proxy.secure` uses HTTPS reverse proxy if true, otherwise HTTP.
 
 # Testing
 

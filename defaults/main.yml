@@ -17,6 +17,7 @@ confluence_proxy_enabled: no
 confluence_proxy:
   public_port: ''
   public_domain: ''
+  secure: false
 
 confluence_jdbc_install: no
 confluence_jdbc_origin: ''

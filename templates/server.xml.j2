@@ -9,12 +9,15 @@
         -->
 
 {% if confluence_proxy_enabled %}
+<!--
+{% endif %}
         <Connector port="{{ confluence_connector_port }}" connectionTimeout="20000" redirectPort="8443"
                    maxThreads="48" minSpareThreads="10"
                    enableLookups="false" acceptCount="10" debug="0" URIEncoding="UTF-8"
-                   protocol="org.apache.coyote.http11.Http11NioProtocol"
-                   scheme="http" proxyName="{{ confluence_proxy['public_domain'] }}" proxyPort="{{ confluence_proxy['public_port'] }}"/>
+                   protocol="org.apache.coyote.http11.Http11NioProtocol"/>
 
+{% if confluence_proxy_enabled %}
+-->
 {% endif %}
 
         <!--
@@ -31,14 +34,17 @@
          ==============================================================================================================
         -->
 
+{% if not confluence_proxy_enabled or (confluence_proxy_enabled and confluence_proxy.secure) %}
         <!--
-        <Connector port="8090" connectionTimeout="20000" redirectPort="8443"
+{% endif %}
+        <Connector port="{{ confluence_connector_port }}" connectionTimeout="20000" redirectPort="8443"
                    maxThreads="48" minSpareThreads="10"
                    enableLookups="false" acceptCount="10" debug="0" URIEncoding="UTF-8"
                    protocol="org.apache.coyote.http11.Http11NioProtocol"
-                   scheme="http" proxyName="<subdomain>.<domain>.com" proxyPort="80"/>
+                   scheme="http" proxyName="{{ confluence_proxy.public_domain }}" proxyPort="{{ confluence_proxy.public_port }}"/>
+{% if not confluence_proxy_enabled or (confluence_proxy_enabled and confluence_proxy.secure) %}
         -->
-        
+{% endif %}
         <!--
          ==============================================================================================================
          HTTPS - Direct connector with no proxy, for unproxied HTTPS access to Confluence.
@@ -70,13 +76,17 @@
          ==============================================================================================================
         -->
 
+{% if not confluence_proxy_enabled or (confluence_proxy_enabled and not confluence_proxy.secure) %}
         <!--
-        <Connector port="8090" connectionTimeout="20000" redirectPort="8443"
+{% endif %}
+        <Connector port="{{ confluence_connector_port }}" connectionTimeout="20000" redirectPort="8443"
                    maxThreads="48" minSpareThreads="10"
                    enableLookups="false" acceptCount="10" debug="0" URIEncoding="UTF-8"
                    protocol="org.apache.coyote.http11.Http11NioProtocol"
-                   scheme="https" secure="true" proxyName="<subdomain>.<domain>.com" proxyPort="443"/>
+                   scheme="https" secure="true" proxyName="{{ confluence_proxy.public_domain }}" proxyPort="{{ confluence_proxy.public_port }}"/>
+{% if not confluence_proxy_enabled or (confluence_proxy_enabled and not confluence_proxy.secure) %}
         -->
+{% endif %}
 
         <Engine name="Standalone" defaultHost="localhost" debug="0">
             <Host name="localhost" debug="0" appBase="webapps" unpackWARs="true" autoDeploy="false" startStopThreads="4">
