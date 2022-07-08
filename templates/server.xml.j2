@@ -41,6 +41,7 @@
                    maxThreads="48" minSpareThreads="10"
                    enableLookups="false" acceptCount="10" debug="0" URIEncoding="UTF-8"
                    protocol="org.apache.coyote.http11.Http11NioProtocol"
+                   {{ confluence_proxy.additionalParameters }}
                    scheme="http" proxyName="{{ confluence_proxy.public_domain }}" proxyPort="{{ confluence_proxy.public_port }}"/>
 {% if not confluence_proxy_enabled or (confluence_proxy_enabled and confluence_proxy.secure) %}
         -->
@@ -83,6 +84,7 @@
                    maxThreads="48" minSpareThreads="10"
                    enableLookups="false" acceptCount="10" debug="0" URIEncoding="UTF-8"
                    protocol="org.apache.coyote.http11.Http11NioProtocol"
+                   {{ confluence_proxy.additionalParameters }}
                    scheme="https" secure="true" proxyName="{{ confluence_proxy.public_domain }}" proxyPort="{{ confluence_proxy.public_port }}"/>
 {% if not confluence_proxy_enabled or (confluence_proxy_enabled and not confluence_proxy.secure) %}
         -->

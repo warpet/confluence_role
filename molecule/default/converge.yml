@@ -9,3 +9,4 @@
           public_domain: 'localhost'
           public_port: 443
           secure: true
+          additionalParameters: 'relaxedPathChars="[]|" relaxedQueryChars="[]|{}^&#x5c;&#x60;&quot;&lt;&gt;"'

@@ -18,6 +18,7 @@ confluence_proxy:
   public_port: ''
   public_domain: ''
   secure: false
+  additionalParameters: 'relaxedPathChars="[]|" relaxedQueryChars="[]|{}^&#x5c;&#x60;&quot;&lt;&gt;"'
 
 confluence_jdbc_install: no
 confluence_jdbc_origin: ''

@@ -96,6 +96,9 @@ Optional variables:
 - `confluence_proxy.public_port` sets the public port
 - `confluence_proxy.public_domain` sets the public domain
 - `confluence_proxy.secure` uses HTTPS reverse proxy if true, otherwise HTTP.
+- `confluence_proxy.additionalParameters` sets additional parameters of connector
+    configuration.
+    For example relaxedPathChars/relaxedQueryChars as documented in https://confluence.atlassian.com/kb/samplehttpconnector-753893891.html
 
 # Testing
 
