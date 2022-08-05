@@ -3,4 +3,5 @@
   service:
     name: confluence
     state: started
+    daemon-reload: yes
     enabled: yes
